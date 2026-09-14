@@ -1,21 +1,30 @@
 from app.agents.base import BaseAgent, AgentResult
-from app.agents.orchestrator.agent import OrchestratorAgent
-from app.agents.computer_agent.agent import ComputerAgent
-from app.agents.file_agent.agent import FileAgent
-from app.agents.web_agent.agent import WebAgent
-from app.agents.coding_agent.agent import CodingAgent
-from app.agents.productivity_agent.agent import ProductivityAgent
-from app.agents.communication_agent.agent import CommunicationAgent
-from app.agents.data_agent.agent import DataAgent
-from app.agents.creative_agent.agent import CreativeAgent
+from app.agents.planner_agent import PlannerAgent
+from app.agents.research_agent import ResearchAgent
+from app.agents.coding_agent import CodingAgent
+from app.agents.data_agent import DataAgent
+from app.agents.testing_agent import TestingAgent
+from app.agents.security_agent import SecurityAgent
+from app.agents.reviewer_agent import ReviewerAgent
+from app.agents.report_agent import ReportAgent
+from app.agents.schedule import ScheduleAgent
 
-# Shared singleton orchestrator
-orchestrator = OrchestratorAgent()
+# Aliases for backward compatibility
+from app.agents.data_analyst import DataAnalystAgent
+from app.agents.risk import RiskAgent
 
-AGENT_REGISTRY = {
-    "orchestrator": orchestrator,
-    **orchestrator.sub_agents
-}
-
-def get_agent(role: str) -> BaseAgent:
-    return AGENT_REGISTRY.get(role, orchestrator)
+__all__ = [
+    "BaseAgent",
+    "AgentResult",
+    "PlannerAgent",
+    "ResearchAgent",
+    "CodingAgent",
+    "DataAgent",
+    "TestingAgent",
+    "SecurityAgent",
+    "ReviewerAgent",
+    "ReportAgent",
+    "ScheduleAgent",
+    "DataAnalystAgent",
+    "RiskAgent"
+]

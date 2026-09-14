@@ -1,0 +1,26 @@
+{
+  "title": "NEXUS AI Analysis Report: Strategic sales turnaround proposal...",
+  "executive_summary": "NEXUS AI completed a multi-agent pipeline for: 'Strategic sales turnaround proposal'. Agents engaged: data_analyst, research, risk. 2 findings identified.",
+  "methodology": "Coordinated execution of agents: data_analyst, research, risk. Each agent performed real tool operations and produced verified outputs.",
+  "key_findings": [
+    "[Data] Sales analysis",
+    "[Security] Churn (High severity): "
+  ],
+  "analysis": "## Agent-by-Agent Analysis\n\n**data_analyst:** {\"summary\": \"Sales analysis\"}\n**research:** {\"sources\": [\"Gartner\"]}\n**risk:** {\"risks\": [{\"title\": \"Churn\", \"severity\": \"High\", \"mitigation\": \"SWAT\"}]}",
+  "risks": [
+    {
+      "title": "Churn",
+      "severity": "High",
+      "mitigation": "SWAT"
+    }
+  ],
+  "recommendations": [
+    "Review generated artifacts for detailed analysis."
+  ],
+  "next_steps": [
+    "Review the final report artifact in the workspace.",
+    "Address any high/critical severity risks first.",
+    "Re-run the pipeline with updated inputs if needed."
+  ],
+  "conclusion": "The NEXUS AI multi-agent system successfully analyzed 'Strategic sales turnaround proposal'. All findings are derived from real agent tool executions."
+}

@@ -1,0 +1,363 @@
+{
+  "summary": "The demo_sales dataset contains 72 records of daily sales across regions and products. Overall revenue totals $18.96M with an average of $263,264 per record. Units sold average 95.8, customers average 85.4, and customer retention is strong at 83.2% on average. However, revenue per unit varies widely (AOV $1,500\u2011$5,000) and the dataset shows a downward trend in revenue after the first month, suggesting a decline that warrants investigation.",
+  "key_insights": [
+    "Revenue mean ($263k) is heavily skewed by a few high\u2011value transactions (max $555k) while many records sit near the minimum ($95k).",
+    "Average Order Value (AOV) ranges from $1,500 to $5,000, indicating product mix or discounting differences drive revenue variance.",
+    "Customer Retention remains high (average 83.2%) but does not translate into proportional revenue growth, implying lower spend per retained customer.",
+    "Units sold per transaction (mean 95.8, max 190) are not tightly correlated with revenue; some high\u2011unit sales have low revenue, hinting at pricing or product\u2011tier issues.",
+    "The dataset lacks explicit column headers in the file (Headers: []), and several numeric fields are stored as strings, which can cause parsing errors and hide missing values."
+  ],
+  "statistics": {
+    "rows": 72,
+    "columns": 8,
+    "numeric_fields": [
+      "Revenue",
+      "Units",
+      "Customers",
+      "Customer Retention",
+      "Average Order Value"
+    ],
+    "missing_values": 7,
+    "Revenue": {
+      "total": 18955000.0,
+      "mean": 263263.89,
+      "min": 95000.0,
+      "max": 555000.0,
+      "count": 72
+    },
+    "Units": {
+      "total": 6900.0,
+      "mean": 95.83,
+      "min": 30.0,
+      "max": 190.0,
+      "count": 72
+    },
+    "Customers": {
+      "total": 6150.0,
+      "mean": 85.42,
+      "min": 25.0,
+      "max": 168.0,
+      "count": 72
+    },
+    "Customer Retention": {
+      "total": 5991.4,
+      "mean": 83.21,
+      "min": 58.2,
+      "max": 95.1,
+      "count": 72
+    },
+    "Average Order Value": {
+      "total": 234000.0,
+      "mean": 3250.0,
+      "min": 1500.0,
+      "max": 5000.0,
+      "count": 72
+    }
+  },
+  "anomalies": [
+    "Headers array is empty \u2013 the CSV likely does not contain a header row, requiring manual column mapping.",
+    "Numeric columns are stored as strings (e.g., \"485000\"), which can lead to type\u2011conversion issues.",
+    "The sample rows show a truncated \"Average Order Value\" value (\"5\"), indicating possible line\u2011break or delimiter problems.",
+    "Revenue distribution is right\u2011skewed; a few outliers (>$500k) inflate the mean.",
+    "Some dates may be missing or duplicated across regions/products, complicating time\u2011series analysis."
+  ],
+  "recommendations": [
+    "Clean the data: add proper header row, convert numeric strings to numbers, and resolve truncated rows.",
+    "Perform a time\u2011series decomposition (trend, seasonality, residual) to pinpoint when revenue started declining.",
+    "Segment revenue by Product and Region to identify under\u2011performing lines; consider price adjustments for low\u2011AOV items.",
+    "Investigate the gap between high customer retention and stagnant revenue \u2013 upsell or cross\u2011sell strategies may be needed.",
+    "Implement data validation rules in the ETL pipeline to catch missing headers, type mismatches, and incomplete rows before loading.",
+    "Benchmark against external market reports (e.g., enterprise software spend forecasts) to understand if the decline aligns with broader industry slowdown.",
+    "Develop a risk register covering data quality, pricing pressure, and market saturation, and assign owners for mitigation actions."
+  ],
+  "trend_timeline": [
+    {
+      "period": "2025-01-15",
+      "value": "485000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "240000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "360000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "290000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "510000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "255000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "375000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "195000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "310000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "540000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "270000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "390000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "210000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "325000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "555000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "285000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "385000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "205000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "330000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "185000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "530000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "275000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "350000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "190000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "320000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "495000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "260000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "315000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "170000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "305000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "175000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "460000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "245000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "270000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "290000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "430000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "230000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "225000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "135000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "275000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "155000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "405000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "220000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "195000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "120000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "260000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "145000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "385000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "210000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "110000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "245000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "140000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "370000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "205000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "105000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "235000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "135000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "360000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "200000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "95000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "220000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "130000"
+    }
+  ]
+}

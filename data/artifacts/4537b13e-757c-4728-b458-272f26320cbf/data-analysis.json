@@ -1,0 +1,20 @@
+{
+  "summary": "Analyzed 72\u00d70 dataset from 'C:\\Users\\Krishna Verma\\.gemini\\antigravity\\scratch\\nexus-ai\\data\\demo_sales.csv'.",
+  "key_insights": [
+    "Dataset contains 72 rows and 0 columns.",
+    "Column 'Revenue': mean = 263263.89.",
+    "Column 'Units': mean = 95.83.",
+    "Column 'Customers': mean = 85.42."
+  ],
+  "statistics": {
+    "rows": 72,
+    "columns": 0,
+    "numeric_fields": [],
+    "missing_values": 0
+  },
+  "anomalies": [],
+  "recommendations": [
+    "Configure an AI provider for deeper business insight synthesis.",
+    "Review column statistics for outliers."
+  ]
+}

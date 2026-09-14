@@ -1,52 +1,52 @@
-from enum import Enum
-import uuid
-from typing import Dict, Any, Optional
-from datetime import datetime
+import os
+import re
+from pathlib import Path
+from fastapi import HTTPException
+from app.core.config import settings
 
-class RiskLevel(str, Enum):
-    LOW = "low"
-    MEDIUM = "medium"
-    HIGH = "high"
-    CRITICAL = "critical"
+def sanitize_filename(filename: str) -> str:
+    """Sanitize filename to prevent directory traversal or shell attacks."""
+    clean = os.path.basename(filename)
+    # Remove any dangerous characters, keep alphanumerics, dots, hyphens, underscores
+    clean = re.sub(r'[^a-zA-Z0-9_.-]', '_', clean)
+    if not clean or clean.startswith('.'):
+        clean = f"file_{clean.lstrip('.')}"
+    return clean
 
-class TicketStatus(str, Enum):
-    PENDING = "pending"
-    APPROVED = "approved"
-    REJECTED = "rejected"
-    TIMEOUT = "timeout"
+def validate_file_extension(filename: str) -> str:
+    """Validate that the file extension is permitted."""
+    ext = filename.split('.')[-1].lower() if '.' in filename else ''
+    if ext not in settings.allowed_extensions:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type: .{ext}. Allowed: {', '.join(settings.allowed_extensions)}"
+        )
+    return ext
 
-# Defined operations that require human-in-the-loop review
-SENSITIVE_OPERATIONS = {
-    "delete_file": RiskLevel.HIGH,
-    "execute_command": RiskLevel.CRITICAL,
-    "modify_system_setting": RiskLevel.HIGH,
-    "kill_process": RiskLevel.HIGH,
-    "execute_code_sandbox": RiskLevel.MEDIUM,
-    "send_external_email": RiskLevel.MEDIUM,
-}
+def validate_file_size(size_bytes: int) -> None:
+    """Ensure file does not exceed maximum permissible size."""
+    if size_bytes > settings.max_file_size_bytes:
+        max_mb = settings.max_file_size_bytes / (1024 * 1024)
+        raise HTTPException(
+            status_code=400,
+            detail=f"File exceeds maximum allowed size of {max_mb} MB"
+        )
 
-def is_operation_sensitive(operation_name: str) -> bool:
-    return operation_name in SENSITIVE_OPERATIONS
+def safe_file_path(base_dir: Path, filename: str) -> Path:
+    """Ensure the resolved path stays within base_dir."""
+    clean_name = sanitize_filename(filename)
+    target = (base_dir / clean_name).resolve()
+    base = base_dir.resolve()
+    try:
+        target.relative_to(base)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid file path detected.")
+    return target
 
-def get_operation_risk(operation_name: str) -> RiskLevel:
-    return SENSITIVE_OPERATIONS.get(operation_name, RiskLevel.LOW)
-
-def create_security_ticket(
-    operation_name: str,
-    description: str,
-    command_or_payload: str,
-    agent_role: str,
-) -> Dict[str, Any]:
-    risk = get_operation_risk(operation_name)
-    ticket_id = f"sec-{uuid.uuid4().hex[:8]}"
-    return {
-        "id": ticket_id,
-        "riskLevel": risk.value,
-        "operationName": operation_name,
-        "description": description,
-        "commandOrPayload": command_or_payload,
-        "agentRole": agent_role,
-        "status": TicketStatus.PENDING.value,
-        "createdAt": datetime.utcnow().isoformat(),
-        "resolvedAt": None,
-    }
+def mask_api_key(key: str | None) -> str:
+    """Return a masked representation of an API key for safe UI display."""
+    if not key:
+        return ""
+    if len(key) <= 8:
+        return "********"
+    return f"{key[:3]}...{key[-4:]}"

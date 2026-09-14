@@ -1,0 +1,354 @@
+{
+  "summary": "Analysis of 72 sales performance records reveals total generated revenue of $18,955,000 across regional product offerings. While high-tier deals reach up to $555,000 per entry with 95.1% retention, significant performance dips (retention dropping to 58.2% and deal values falling to $95,000) highlight underlying regional or product-level churn risks.",
+  "key_insights": [
+    "Revenue per transaction varies widely from $95,000 to $555,000, driven by distinct product pricing models (e.g., lower-tier Cloud Analytics vs. high-AOV Enterprise Suite).",
+    "Average Order Value (AOV) spans from $1,500 to $5,000 with a mean of $3,250, indicating potential reliance on high-ticket enterprise contracts.",
+    "Customer retention exhibits severe volatility across segments, averaging 83.21% but falling as low as 58.2% in underperforming accounts."
+  ],
+  "statistics": {
+    "rows": 72,
+    "columns": 8,
+    "numeric_fields": [
+      "Revenue",
+      "Units",
+      "Customers",
+      "Customer Retention",
+      "Average Order Value"
+    ],
+    "missing_values": 0,
+    "Revenue": {
+      "total": 18955000.0,
+      "mean": 263263.89,
+      "min": 95000.0,
+      "max": 555000.0,
+      "count": 72
+    },
+    "Units": {
+      "total": 6900.0,
+      "mean": 95.83,
+      "min": 30.0,
+      "max": 190.0,
+      "count": 72
+    },
+    "Customers": {
+      "total": 6150.0,
+      "mean": 85.42,
+      "min": 25.0,
+      "max": 168.0,
+      "count": 72
+    },
+    "Customer Retention": {
+      "total": 5991.4,
+      "mean": 83.21,
+      "min": 58.2,
+      "max": 95.1,
+      "count": 72
+    },
+    "Average Order Value": {
+      "total": 234000.0,
+      "mean": 3250.0,
+      "min": 1500.0,
+      "max": 5000.0,
+      "count": 72
+    }
+  },
+  "anomalies": [
+    "Customer retention drops to an anomalous low of 58.2% (against a mean of 83.21%), pointing to localized customer attrition.",
+    "Minimum monthly revenue drops to $95,000, representing an 82.9% drop from peak periods ($555,000)."
+  ],
+  "recommendations": [
+    "Target underperforming customer segments where retention fell below 60% with tailored customer success interventions to reduce revenue leakage.",
+    "Cross-sell higher-value enterprise options to mid-market accounts currently yielding lower AOV ($1,500) to bolster revenue resilience.",
+    "Conduct regional performance reviews to determine if revenue dips are localized to specific geographies or product lines."
+  ],
+  "trend_timeline": [
+    {
+      "period": "2025-01-15",
+      "value": "485000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "240000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "360000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "290000"
+    },
+    {
+      "period": "2025-01-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "510000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "255000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "375000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "195000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "310000"
+    },
+    {
+      "period": "2025-02-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "540000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "270000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "390000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "210000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "325000"
+    },
+    {
+      "period": "2025-03-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "555000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "285000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "385000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "205000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "330000"
+    },
+    {
+      "period": "2025-04-15",
+      "value": "185000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "530000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "275000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "350000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "190000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "320000"
+    },
+    {
+      "period": "2025-05-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "495000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "260000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "315000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "170000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "305000"
+    },
+    {
+      "period": "2025-06-15",
+      "value": "175000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "460000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "245000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "270000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "290000"
+    },
+    {
+      "period": "2025-07-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "430000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "230000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "225000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "135000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "275000"
+    },
+    {
+      "period": "2025-08-15",
+      "value": "155000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "405000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "220000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "195000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "120000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "260000"
+    },
+    {
+      "period": "2025-09-15",
+      "value": "145000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "385000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "210000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "180000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "110000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "245000"
+    },
+    {
+      "period": "2025-10-15",
+      "value": "140000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "370000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "205000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "165000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "105000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "235000"
+    },
+    {
+      "period": "2025-11-15",
+      "value": "135000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "360000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "200000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "150000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "95000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "220000"
+    },
+    {
+      "period": "2025-12-15",
+      "value": "130000"
+    }
+  ]
+}

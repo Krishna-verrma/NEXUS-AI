@@ -1,0 +1,20 @@
+{
+  "summary": "Data file 'C:\\Users\\Krishna Verma\\AppData\\Local\\Temp\\pytest-of-Krishna Verma\\pytest-10\\test_4_custom_dataset_analysis0\\server_metrics.csv' could not be fully parsed.",
+  "key_insights": [
+    "File was located and partially read.",
+    "Configure AI_API_KEY for intelligent data analysis synthesis."
+  ],
+  "statistics": {
+    "rows": 0,
+    "columns": 0,
+    "numeric_fields": [],
+    "missing_values": 0
+  },
+  "anomalies": [
+    "File parsing incomplete \u2014 check format compatibility."
+  ],
+  "recommendations": [
+    "Ensure file is in CSV, JSON, or Excel format.",
+    "Configure an AI provider for full analysis synthesis."
+  ]
+}

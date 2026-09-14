@@ -9,27 +9,26 @@ export default {
     extend: {
       colors: {
         nexus: {
-          bg: '#080B11',
-          surface: '#0E131F',
-          card: '#131929',
-          border: 'rgba(255, 255, 255, 0.08)',
-          hover: 'rgba(255, 255, 255, 0.04)',
-          cyan: '#00F0FF',
-          violet: '#8B5CF6',
-          indigo: '#6366F1',
-          emerald: '#10B981',
-          amber: '#F59E0B',
-          rose: '#F43F5E',
+          900: '#07090e',
+          850: '#0c1017',
+          800: '#111722',
+          700: '#1a2234',
+          600: '#25324d',
+          accent: '#3b82f6',
+          purple: '#8b5cf6',
+          cyan: '#06b6d4',
+          emerald: '#10b981',
+          rose: '#f43f5e',
+          amber: '#f59e0b'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
       },
-      boxShadow: {
-        'cyan-glow': '0 0 20px -5px rgba(0, 240, 255, 0.3)',
-        'violet-glow': '0 0 20px -5px rgba(139, 92, 246, 0.3)',
-        'amber-glow': '0 0 20px -5px rgba(245, 158, 11, 0.3)',
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 8s linear infinite',
       }
     },
   },

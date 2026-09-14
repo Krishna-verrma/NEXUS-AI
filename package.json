@@ -1,16 +1,76 @@
 {
   "name": "nexus-ai",
   "version": "1.0.0",
-  "description": "Modular Full-Stack Desktop AI Assistant",
+  "description": "NEXUS AI - Autonomous Multi-Agent Desktop Workspace",
+  "main": "desktop/main/index.js",
   "scripts": {
-    "frontend": "npm run --prefix frontend dev",
-    "backend": "python -m uvicorn backend.app.main:app --reload --port 8000",
-    "desktop": "npm start --prefix desktop",
-    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run backend\" \"npm run frontend\"",
-    "build": "npm run --prefix frontend build && npm run --prefix desktop build",
-    "test": "python -m pytest backend/tests && npm run --prefix frontend test"
+    "dev:backend": ".\\backend\\venv\\Scripts\\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000",
+    "dev:frontend": "cd frontend && npm.cmd run dev",
+    "dev:electron": "cross-env NODE_ENV=development VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"BACKEND,FRONTEND,ELECTRON\" -c \"blue.bold,cyan.bold,magenta.bold\" \"npm.cmd run dev:backend\" \"npm.cmd run dev:frontend\" \"wait-on http://127.0.0.1:8000/api/health && wait-on http://localhost:5173 && npm.cmd run dev:electron\"",
+    "build:frontend": "cd frontend && npm.cmd run build",
+    "build:win": "npm.cmd run build:frontend && electron-builder --win",
+    "build": "npm.cmd run build:win",
+    "test": ".\\backend\\venv\\Scripts\\python.exe -m pytest tests -v"
   },
+  "keywords": [
+    "ai",
+    "agent",
+    "multi-agent",
+    "desktop",
+    "electron",
+    "fastapi",
+    "react"
+  ],
+  "author": "Nexus AI Team",
+  "license": "MIT",
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^31.4.0",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.nexusai.desktop",
+    "productName": "NEXUS AI",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "frontend/dist/**/*",
+      "data/demo_sales.csv"
+    ],
+    "extraResources": [
+      {
+        "from": "backend",
+        "to": "backend",
+        "filter": [
+          "**/*",
+          "!**/__pycache__/**",
+          "!**/*.pyc",
+          "!**/.pytest_cache/**"
+        ]
+      },
+      {
+        "from": "data",
+        "to": "data"
+      }
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NEXUS AI"
+    }
   }
 }

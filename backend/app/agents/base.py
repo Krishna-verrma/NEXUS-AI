@@ -1,82 +1,32 @@
 import time
-import datetime
-from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional, Callable
-from app.tools import dispatch_tool
+from typing import Any, Optional
+from pydantic import BaseModel, Field
 
-class AgentResult:
-    def __init__(
-        self,
-        agent_role: str,
-        response: str,
-        status: str = "completed",
-        activity_traces: Optional[List[Dict[str, Any]]] = None,
-        security_ticket: Optional[Dict[str, Any]] = None,
-        data: Optional[Any] = None
-    ):
-        self.agent_role = agent_role
-        self.response = response
-        self.status = status
-        self.activity_traces = activity_traces or []
-        self.security_ticket = security_ticket
-        self.data = data
+class AgentResult(BaseModel):
+    agent_id: str
+    agent_name: str
+    success: bool
+    output: Any
+    preview: str
+    confidence: float = 1.0
+    metrics: dict[str, Any] = Field(default_factory=dict)
+    duration_seconds: float = 0.0
+    error: Optional[str] = None
 
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "agent_role": self.agent_role,
-            "response": self.response,
-            "status": self.status,
-            "activity_traces": self.activity_traces,
-            "security_ticket": self.security_ticket,
-            "data": self.data,
-        }
-
-class BaseAgent(ABC):
-    def __init__(
-        self,
-        role: str,
-        name: str,
-        description: str,
-        capabilities: List[str],
-        allowed_tools: List[str]
-    ):
-        self.role = role
+class BaseAgent:
+    """Base class for all specialized and orchestrator agents in Nexus AI."""
+    def __init__(self, agent_id: str, name: str, role: str):
+        self.agent_id = agent_id
         self.name = name
-        self.description = description
-        self.capabilities = capabilities
-        self.allowed_tools = allowed_tools
+        self.role = role
 
-    @abstractmethod
-    def execute(
-        self,
-        prompt: str,
-        context: Optional[Dict[str, Any]] = None,
-        callback: Optional[Callable[[Dict[str, Any]], None]] = None
-    ) -> AgentResult:
-        """Execute agent workflow on user prompt with optional live progress callback."""
-        pass
+    async def run(self, context: dict[str, Any]) -> AgentResult:
+        """Execute the agent's core workflow on the provided context."""
+        raise NotImplementedError("Subclasses must implement run()")
 
-    def emit_trace(
-        self,
-        action: str,
-        detail: str = "",
-        status: str = "step",
-        tool_calls: Optional[List[Dict[str, Any]]] = None,
-        callback: Optional[Callable[[Dict[str, Any]], None]] = None
-    ) -> Dict[str, Any]:
-        trace = {
-            "agentRole": self.role,
-            "action": action,
-            "status": status,
-            "timestamp": datetime.datetime.utcnow().isoformat(),
-            "detail": detail,
-            "toolCalls": tool_calls or []
-        }
-        if callback:
-            callback(trace)
-        return trace
-
-    def invoke_tool(self, tool_name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
-        if tool_name not in self.allowed_tools:
-            return {"success": False, "error": f"Tool '{tool_name}' not allowed for agent '{self.role}'"}
-        return dispatch_tool(tool_name, arguments, agent_role=self.role)
+    def format_preview(self, text: str, max_chars: int = 240) -> str:
+        """Generate a clean, high-level preview string."""
+        cleaned = " ".join(text.split())
+        if len(cleaned) <= max_chars:
+            return cleaned
+        return cleaned[:max_chars].rstrip() + "..."

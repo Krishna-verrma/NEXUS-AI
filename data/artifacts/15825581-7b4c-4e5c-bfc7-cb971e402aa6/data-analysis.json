@@ -1,0 +1,16 @@
+{
+  "summary": "No data was provided, so no analysis could be performed.",
+  "key_insights": [],
+  "statistics": {
+    "rows": 0,
+    "columns": 0,
+    "numeric_fields": [],
+    "missing_values": 0
+  },
+  "anomalies": [
+    "Input file is missing or empty; unable to extract any records."
+  ],
+  "recommendations": [
+    "Please upload the relevant CSV, JSON, or Excel file containing your schedule or meeting data so that the analysis can be performed."
+  ]
+}

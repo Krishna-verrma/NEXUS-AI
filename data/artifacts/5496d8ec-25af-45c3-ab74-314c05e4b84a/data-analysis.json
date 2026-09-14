@@ -1,0 +1,18 @@
+{
+  "summary": "No data was provided for analysis, so no patterns, trends, or statistics can be derived.",
+  "key_insights": [],
+  "statistics": {
+    "rows": 0,
+    "columns": 0,
+    "numeric_fields": [],
+    "missing_values": 0
+  },
+  "anomalies": [
+    "Input file is empty or missing; no data available to process."
+  ],
+  "recommendations": [
+    "Upload the relevant CSV, JSON, or Excel file containing your Google Calendar meeting data.",
+    "Ensure the file includes columns such as meeting title, start time, end time, participants, and any other relevant attributes.",
+    "If the data is sensitive, consider redacting personal identifiers before sharing."
+  ]
+}

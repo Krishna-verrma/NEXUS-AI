@@ -1,54 +1,26 @@
 # Node
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 dist/
 build/
+npm-debug.log*
+yarn-debug.log*
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+venv/
+.venv/
 .pytest_cache/
-.coverage
+*.egg-info/
 
-# Databases & Runtime Data
-*.db
-*.sqlite
+# Databases & Runtime
+data/nexus_ai.db*
 *.sqlite3
-nexus.db
 
-# Environment & Secrets
-.env
-.env.local
-.env.*.local
+# Release
+release/
 
 # OS
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# IDEs
-.idea/
-.vscode/
-*.swp
-*.swo

@@ -1,121 +1,217 @@
-# NEXUS AI — Intelligent Desktop Operating Layer
+# NEXUS AI
 
-> **A production-ready, modular full-stack Windows desktop AI assistant.**
+> *"Turn complex problems into intelligent workflows."*
+
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-blue.svg)](https://microsoft.com/windows)
+[![React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20TypeScript%20%7C%20Vite%20%7C%20Tailwind-61dafb.svg)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.14-009688.svg)](https://fastapi.tiangolo.com/)
+[![Desktop](https://img.shields.io/badge/Desktop-Electron%2031-47848F.svg)](https://www.electronjs.org/)
+[![Database](https://img.shields.io/badge/Database-SQLite%20(WAL%20Mode)-003B57.svg)](https://www.sqlite.org/)
+[![Status](https://img.shields.io/badge/Tests-22%2F22%20Passing-brightgreen.svg)]()
+
+**NEXUS AI** is an advanced desktop AI command center engineered for autonomous problem-solving. Instead of acting as a simple conversational chatbot, Nexus AI functions as a multi-agent workspace where high-level user tasks are dynamically decomposed, delegated to specialized agents, audited by a strict QA Reviewer, and synthesized into strategic executive deliverables.
 
 ---
 
-## 🌟 Architectural Overview
-
-Nexus AI is engineered with strict separation of concerns across every layer:
+## 🌟 Architecture & Workflow
 
 ```
-Nexus-AI/
-├── frontend/          # Independent React + TypeScript + Vite + Tailwind CSS application
-├── backend/           # Independent FastAPI + Python service with modular agents and tools
+                          ┌───────────────────────────┐
+                          │       USER REQUEST        │
+                          └─────────────┬─────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────────┐
+                          │    NEXUS ORCHESTRATOR     │
+                          │ Dynamic Planning & DAG    │
+                          └─────────────┬─────────────┘
+                                        │
+        ┌───────────────────────────────┼──────────────────────────────┐
+        │                               │                              │
+        ▼                               ▼                              ▼
+┌──────────────┐                ┌──────────────┐               ┌──────────────┐
+│ DATA ANALYST │                │RESEARCH AGENT│               │ CODING AGENT │
+│ CSV/XLSX/JSON│                │Market Trends │               │ Polyglot Fix │
+└───────┬──────┘                └───────┬──────┘               └───────┬──────┘
+        │                               │                              │
+        └───────────────────────────────┼──────────────────────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────────┐
+                          │        RISK AGENT         │
+                          │ Multi-Dimensional Surface │
+                          └─────────────┬─────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────────┐
+                          │      REVIEWER AGENT       │
+                          │   Quality Assurance Gate  │
+                          └──────┬─────────────▲──────┘
+                                 │             │
+                    Approved: Yes│             │ Approved: No (Max 2 retries)
+                                 │             └─────── Revision Loop
+                                 ▼
+                          ┌───────────────────────────┐
+                          │       REPORT AGENT        │
+                          │ Executive Synthesis & MD  │
+                          └─────────────┬─────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────────┐
+                          │       FINAL RESULT        │
+                          │ Strategic Solution & Chat │
+                          └───────────────────────────┘
+```
+
+---
+
+## 🚀 Key Features
+
+### 1. Dynamic Nexus Orchestrator (`backend/app/agents/orchestrator.py`)
+- **Dynamic Task Planning**: Analyzes complexity and constructs a tailored agent Directed Acyclic Graph (DAG). Never hardcodes a fixed pipeline.
+- **Context Passing**: Automatically cascades intermediate tabular data, market context, and risk matrices between agents.
+- **Reviewer Quality Gate**: Integrates a feedback loop where outputs that fail consistency or completeness checks are revised up to 2 times.
+- **Clean High-Level Telemetry**: Emits high-level status transitions without exposing private chain-of-thought dumps.
+
+### 2. Specialized Multi-Agent Registry
+1. 🧠 **Nexus Orchestrator**: Central planner and execution coordinator.
+2. 📊 **Data Analyst Agent**: Real descriptive statistics (mean, median, std, min, max), anomaly detection, trend regression, and chart data generation for CSV/XLSX/JSON.
+3. 🔎 **Research Agent**: Investigates industry trends, cites authoritative sources, and separates verified facts from strategic assumptions.
+4. 💻 **Coding Agent**: Polyglot generation and debugging (C++, Python, Java, JS, TS, SQL) with safe review principles (no arbitrary auto-execution).
+5. 📄 **Document Agent**: Deep structural extraction and Q&A on PDF, DOCX, and text briefs.
+6. ⚠ **Risk Agent**: Maps business, technical, operational, cybersecurity, and data compliance risks with severity, probability, and actionable mitigations.
+7. 🧐 **Reviewer Agent**: Validates accuracy, completeness, and consistency before approving results.
+8. 📑 **Report Agent**: Synthesizes formal executive briefings with Executive Summary, Methodology, Key Findings, In-Depth Analysis, Risk Matrices, and Actionable Recommendations.
+
+### 3. Glassmorphic AI Command Center UI
+- Custom dark-theme desktop interface built with React 18, TypeScript, and Tailwind CSS.
+- Real-time agent status cards with live state transitions, animated pulses, duration clocks, and output inspection modals.
+- Interactive workflow visualizer (Cards and Pipeline views).
+- Grounded follow-up chat drawer to continue querying the completed task context.
+- Full markdown & HTML report exporter.
+
+### 4. Deterministic Hackathon Demo Mode
+- **Zero Configuration**: Works out-of-the-box without an API key or internet connection.
+- **Authentic Sales Dataset**: Processes `data/demo_sales.csv` with real tabular calculation of revenue contraction and customer retention decay.
+- **Reliable Execution**: 100% deterministic, passing all quality checks and generating complete strategic deliverables.
+
+### 5. Cybersecurity & Safe Desktop Sandbox
+- **Electron Security**: `contextIsolation: true`, `nodeIntegration: false`, secure IPC preload bridge.
+- **Upload Hardening**: Path traversal prevention, extension allowlisting, and 25MB file limits.
+- **Credential Protection**: API keys are masked and persisted strictly in local SQLite (`nexus_ai.db`).
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| **Desktop** | Electron 31, Electron Builder (NSIS & Portable targets) |
+| **Frontend** | React 18, TypeScript, Vite 5, Tailwind CSS, Lucide Icons |
+| **Backend** | Python 3.14, FastAPI, Uvicorn, Pydantic v2 |
+| **Database** | SQLite 3 with WAL mode and foreign key constraints |
+| **Real-Time** | WebSockets (`ws://127.0.0.1:8000/ws/tasks/{id}`) |
+| **Testing** | Pytest, Pytest-Asyncio, HTTPX |
+
+---
+
+## 📂 Project Structure
+
+```
+nexus-ai/
+├── frontend/                     # React + TypeScript + Vite UI
+│   ├── src/
+│   │   ├── components/           # UI, Layout, Workspace, Chat, Reports
+│   │   ├── pages/                # Dashboard, Workspace, Agents, Files, History, Reports, Settings
+│   │   ├── hooks/                # useWebSocket, useTasks
+│   │   ├── services/             # REST & WebSocket API clients
+│   │   ├── types/                # TypeScript domain models
+│   │   └── utils/                # Formatters, Electron bridge
+│   └── package.json
+│
+├── backend/                      # Python FastAPI application
 │   ├── app/
-│   │   ├── agents/    # 9 isolated agent packages + Orchestrator
-│   │   ├── tools/     # 7 isolated tool domains (filesystem, computer, code, etc.)
-│   │   ├── services/  # LLM (Multi-provider + Demo Mode), WebSockets, Security
-│   │   └── api/       # REST and WebSocket endpoints
-├── desktop/           # Independent Electron Windows desktop application with secure IPC
-├── database/          # SQLite schema, migrations, seed scripts
-├── shared/            # Shared TypeScript contracts, models, and constants
-├── scripts/           # PowerShell and shell orchestration scripts
-├── docs/              # In-depth architectural, API, and security documentation
-├── package.json       # Root dev orchestration
-└── README.md
+│   │   ├── agents/               # Orchestrator & 7 specialized agents
+│   │   ├── api/                  # REST endpoints & WebSocket handler
+│   │   ├── core/                 # Config, AI client, Security, Event bus
+│   │   ├── database/             # SQLite connection & CRUD repository
+│   │   ├── models/               # Pydantic schema models
+│   │   ├── services/             # Task, File, Chat, and Demo services
+│   │   └── main.py               # Application entrypoint
+│   ├── requirements.txt
+│   └── .env.example
+│
+├── desktop/                      # Electron application
+│   ├── main/index.js             # Window supervisor & backend process manager
+│   └── preload/index.js          # Secure contextBridge IPC
+│
+├── data/
+│   └── demo_sales.csv            # Realistic enterprise sales dataset
+│
+├── tests/                        # Comprehensive test suite (22 tests)
+│   ├── test_backend_startup.py
+│   ├── test_agents.py
+│   ├── test_orchestrator.py
+│   ├── test_reviewer.py
+│   ├── test_file_validation.py
+│   ├── test_api_endpoints.py
+│   └── test_demo_scenario.py
+│
+├── scripts/                      # Windows launch and build batch scripts
+│   ├── start-backend.bat
+│   ├── start-dev.bat
+│   └── build-win.bat
+│
+├── README.md
+├── INSTALLATION.md
+└── package.json                  # Root development & electron-builder orchestration
 ```
 
-Each subsystem can be opened, modified, and executed completely independently:
-- Work **ONLY** on the UI: `cd frontend && npm run dev`
-- Work **ONLY** on AI agents: `cd backend && python -m uvicorn app.main:app --reload`
-- Work **ONLY** on Electron desktop: `cd desktop && npm start`
-
 ---
 
-## 🤖 The 9 Autonomous Agents
+## ⚡ Quick Start
 
-| Agent | Responsibility | Key Tools |
-| :--- | :--- | :--- |
-| **Nexus Orchestrator** | Central intelligence, multi-step planning, delegation & synthesis | `planner`, `delegator`, `synthesizer` |
-| **Computer Controller** | App launching, screen capture, window control, hardware vitals | `launch_app`, `capture_screenshot`, `get_system_info` |
-| **Filesystem Operator** | File discovery, directory traversal, safe creation & deletion | `search_files`, `read_file`, `create_file`, `delete_file` |
-| **Web Navigator** | Live search queries, webpage scraping, documentation retrieval | `search_web`, `fetch_webpage` |
-| **Code Architect** | Syntax inspection, AST diagnostics, sandboxed execution | `analyze_code_structure`, `execute_code_sandbox` |
-| **Productivity Executive** | Schedule blocking, agenda management, meeting brief formatting | `list_calendar_events`, `schedule_calendar_event` |
-| **Comms Dispatcher** | Professional emails, Slack/announcement drafts, notifications | `draft_email`, `format_announcement` |
-| **Data Scientist** | CSV/JSON analysis, aggregation statistics, chart shaping | `inspect_excel`, `calculate_metrics` |
-| **Creative Studio** | Whitepaper drafting, UI copywriting, markdown publications | `create_docx_summary`, `format_document` |
-
----
-
-## 🛡️ Human-in-the-Loop Security Gate
-
-Dangerous actions (`delete_file`, `execute_command`, `kill_process`) are protected:
-1. Agent attempts to perform a sensitive operation.
-2. The engine halts execution and issues a security ticket (`sec-xxxxxxxx`).
-3. The UI renders an interactive authorization prompt with `[Cancel]` and `[Allow]`.
-4. Only upon explicit user confirmation does the operation proceed.
-
----
-
-## 🚀 Quick Start
-
-### 1. Automated Setup
-Install dependencies across all subsystems in one command:
 ```powershell
-# PowerShell
-powershell -ExecutionPolicy Bypass -File scripts/setup/setup.ps1
-```
+# 1. Clone or navigate to workspace
+cd "C:\Users\Krishna Verma\.gemini\antigravity\scratch\nexus-ai"
 
-### 2. Start Development Environment
-Launch both Backend and Frontend concurrently:
-```powershell
-# PowerShell
-powershell -ExecutionPolicy Bypass -File scripts/start-dev/start-dev.ps1
-```
-Or start independently:
-```bash
-# Terminal 1: Backend
+# 2. Setup backend virtual environment
 cd backend
-python -m uvicorn app.main:app --reload --port 8000
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+cd ..
 
-# Terminal 2: Frontend
-cd frontend
-npm run dev
+# 3. Install dependencies
+npm.cmd install
+cd frontend && npm.cmd install && cd ..
 
-# Terminal 3 (Optional): Desktop Electron Shell
-cd desktop
-npm start
+# 4. Run automated test suite
+.\backend\venv\Scripts\python.exe -m pytest tests -v
 
-# Terminal 4: Streamlit Web Command Center
-streamlit run streamlit_app.py
-```
-
-### 3. Open in Browser or Desktop
-- **Streamlit Command Center**: [http://localhost:8501](http://localhost:8501)
-- **Web Command Center**: [http://localhost:5173](http://localhost:5173)
-- **FastAPI Documentation**: [http://localhost:8000/docs](http://localhost:8000/docs)
-
----
-
-## 🧪 Testing
-
-Run backend tests:
-```bash
-cd backend
-python -m pytest
-```
-
-Verify frontend build:
-```bash
-cd frontend
-npm run build
+# 5. Launch the desktop application
+npm.cmd run dev
 ```
 
 ---
 
-## 💡 Zero-Key Demo Mode
+## 🏆 Hackathon Demo Walkthrough
 
-No API keys? No problem.
-Nexus AI operates in full **Demo Mode** out of the box. All agents, planning pipelines, tools, and real-time WebSockets operate seamlessly with realistic simulations without requiring paid credentials. To use real cloud LLMs, simply add your `GEMINI_API_KEY`, `OPENAI_API_KEY`, or `ANTHROPIC_API_KEY` in the **Settings** tab.
+1. Open **NEXUS AI**.
+2. Click the prominent amber **[Start Demo Workflow]** card on the dashboard.
+3. Observe the live multi-agent execution pipeline in the Workspace:
+   - **Data Analyst** computes summary metrics, regional breakdowns, and anomalies on `demo_sales.csv`.
+   - **Research Agent** cross-references findings with external enterprise market trends.
+   - **Risk Agent** assesses critical account churn and technical migration risks.
+   - **Reviewer Agent** performs logical consistency auditing and approves deliverables.
+   - **Report Agent** compiles a publication-ready strategic intelligence report.
+4. Click **[View Full Report]** to inspect the 7-section deliverable or **[Download MD]** to export.
+5. In the right dock, use the **Task Intelligence Chat** to ask:
+   *"Why did revenue decline in Europe?"*
+   Nexus AI will instantly deliver grounded answers based on the empirical results.
+
+---
+
+## 📜 License
+
+MIT License © 2026 NEXUS AI Team.
