@@ -87,9 +87,13 @@ npm run dev
 # Terminal 3 (Optional): Desktop Electron Shell
 cd desktop
 npm start
+
+# Terminal 4: Streamlit Web Command Center
+streamlit run streamlit_app.py
 ```
 
 ### 3. Open in Browser or Desktop
+- **Streamlit Command Center**: [http://localhost:8501](http://localhost:8501)
 - **Web Command Center**: [http://localhost:5173](http://localhost:5173)
 - **FastAPI Documentation**: [http://localhost:8000/docs](http://localhost:8000/docs)
 
