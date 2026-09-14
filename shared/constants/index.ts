@@ -1,0 +1,133 @@
+/**
+ * Nexus AI - Shared Constants
+ */
+
+import { AgentRole, AgentDescriptor } from '../types';
+
+export const API_DEFAULT_PORT = 8000;
+export const FRONTEND_DEFAULT_PORT = 5173;
+export const DEFAULT_API_BASE_URL = `http://localhost:${API_DEFAULT_PORT}`;
+export const DEFAULT_WS_URL = `ws://localhost:${API_DEFAULT_PORT}/api/ws`;
+
+export const AGENT_ROLES: AgentRole[] = [
+  'orchestrator',
+  'computer_agent',
+  'file_agent',
+  'web_agent',
+  'coding_agent',
+  'productivity_agent',
+  'communication_agent',
+  'data_agent',
+  'creative_agent',
+];
+
+export const INITIAL_AGENTS: AgentDescriptor[] = [
+  {
+    id: 'orchestrator',
+    role: 'orchestrator',
+    name: 'Nexus Orchestrator',
+    description: 'Central brain. Plans workflows, delegates to specialized agents, and synthesizes results.',
+    avatar: 'BrainCircuit',
+    color: '#00F0FF',
+    capabilities: ['Intent Classification', 'Multi-Agent Planning', 'Tool Synthesis', 'Self-Correction'],
+    tools: ['planner', 'delegator', 'synthesizer'],
+    status: 'idle',
+    totalExecutions: 142,
+  },
+  {
+    id: 'computer_agent',
+    role: 'computer_agent',
+    name: 'Computer Controller',
+    description: 'Direct desktop integration, app launching, screenshot capture, and OS window management.',
+    avatar: 'Monitor',
+    color: '#8B5CF6',
+    capabilities: ['App Launching', 'Screen Capture', 'Process Management', 'System Control'],
+    tools: ['launch_app', 'capture_screen', 'get_sys_info', 'window_control'],
+    status: 'idle',
+    totalExecutions: 89,
+  },
+  {
+    id: 'file_agent',
+    role: 'file_agent',
+    name: 'Filesystem Operator',
+    description: 'Autonomous file discovery, structured text analysis, safe modification, and organization.',
+    avatar: 'FolderGit2',
+    color: '#3B82F6',
+    capabilities: ['Deep File Search', 'Directory Indexing', 'Metadata Extraction', 'Safe File Writes'],
+    tools: ['search_files', 'read_file', 'create_file', 'move_file', 'delete_file'],
+    status: 'idle',
+    totalExecutions: 215,
+  },
+  {
+    id: 'web_agent',
+    role: 'web_agent',
+    name: 'Web Navigator',
+    description: 'Live internet search, content scraping, real-time documentation retrieval, and web synthesis.',
+    avatar: 'Globe2',
+    color: '#10B981',
+    capabilities: ['Search Engine Querying', 'Web Page Scraping', 'Article Summarization', 'Documentation Search'],
+    tools: ['search_web', 'fetch_page', 'extract_links'],
+    status: 'idle',
+    totalExecutions: 178,
+  },
+  {
+    id: 'coding_agent',
+    role: 'coding_agent',
+    name: 'Code Architect',
+    description: 'Software engineering, syntax analysis, refactoring, code execution testing, and debugging.',
+    avatar: 'Terminal',
+    color: '#EC4899',
+    capabilities: ['Static Analysis', 'Bug Diagnostics', 'Code Generation', 'Test Execution'],
+    tools: ['analyze_code', 'execute_code_sandbox', 'refactor_code'],
+    status: 'idle',
+    totalExecutions: 310,
+  },
+  {
+    id: 'productivity_agent',
+    role: 'productivity_agent',
+    name: 'Productivity Executive',
+    description: 'Manages calendars, meeting agendas, task pipelines, reminders, and daily briefing logs.',
+    avatar: 'CalendarCheck',
+    color: '#F59E0B',
+    capabilities: ['Event Scheduling', 'Task Prioritization', 'Meeting Summaries', 'Time Blocking'],
+    tools: ['schedule_event', 'manage_tasks', 'create_briefing'],
+    status: 'idle',
+    totalExecutions: 94,
+  },
+  {
+    id: 'communication_agent',
+    role: 'communication_agent',
+    name: 'Comms Dispatcher',
+    description: 'Generates professional email drafts, team announcements, Slack updates, and notifications.',
+    avatar: 'MessageSquareShare',
+    color: '#14B8A6',
+    capabilities: ['Email Drafting', 'Slack Updates', 'Broadcast Messages', 'Tone Adaptation'],
+    tools: ['draft_email', 'format_announcement', 'send_notification'],
+    status: 'idle',
+    totalExecutions: 67,
+  },
+  {
+    id: 'data_agent',
+    role: 'data_agent',
+    name: 'Data Scientist',
+    description: 'Processes CSV, JSON, and tabular datasets, performs numerical summaries, and shapes chart metrics.',
+    avatar: 'BarChart3',
+    color: '#6366F1',
+    capabilities: ['CSV Parsing', 'Statistical Summary', 'Data Transformation', 'Chart Aggregation'],
+    tools: ['analyze_tabular', 'calculate_metrics', 'export_json'],
+    status: 'idle',
+    totalExecutions: 112,
+  },
+  {
+    id: 'creative_agent',
+    role: 'creative_agent',
+    name: 'Creative Studio',
+    description: 'Generates technical whitepapers, documentation layouts, UI concept copy, and presentations.',
+    avatar: 'Sparkles',
+    color: '#A855F7',
+    capabilities: ['Long-form Content', 'Brainstorming', 'Design Copywriting', 'Markdown Generation'],
+    tools: ['write_markdown', 'generate_concepts', 'format_document'],
+    status: 'idle',
+    totalExecutions: 83,
+  },
+];

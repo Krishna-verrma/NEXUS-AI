@@ -1,0 +1,16 @@
+{
+  "name": "nexus-ai",
+  "version": "1.0.0",
+  "description": "Modular Full-Stack Desktop AI Assistant",
+  "scripts": {
+    "frontend": "npm run --prefix frontend dev",
+    "backend": "python -m uvicorn backend.app.main:app --reload --port 8000",
+    "desktop": "npm start --prefix desktop",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run backend\" \"npm run frontend\"",
+    "build": "npm run --prefix frontend build && npm run --prefix desktop build",
+    "test": "python -m pytest backend/tests && npm run --prefix frontend test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
